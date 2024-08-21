@@ -1,0 +1,46 @@
+{
+	"verbosity": "all",
+	"repeats" : 5,
+	"batches": -1,
+	"duration" : 30,
+	"workers" : 5,
+	"memory" : 4,
+	"transforms" : 300,
+	"seed": [1,2,3,4,5],
+	"batch_size" : 300,
+	"maze_gen" : "container",
+	"expected_result": "safe",
+	"abort_on_error": [["fp"]],
+	"tool" : {
+		"seahorn" : {
+			"variant" : ["pf -m64 --bv-chc"]
+		}
+	},
+	"avg": 1,
+	"parameters" : {
+		"u" : [0,1],
+		"a": ["Backtracking","Kruskal","Prims","Wilsons","Sidewinder"],
+		"w" : {
+			"min" : 4,
+			"max" : 7
+		},
+		"h" : {
+			"min" : 5,
+			"max" : 7
+		},
+		"c" : {
+			"min" : 0,
+			"max" : 0
+		},
+		"t" : {
+			"unsat": [1],
+			"mc": [0,25,50,75,100]
+		},
+		"g": ["CVE_gen"],
+		"s": "/Minotaur/bug_seeds/app1bench_1654.smt2",
+		"r" : {
+			"min" : 0,
+			"max" : 65536
+		}
+	}
+}

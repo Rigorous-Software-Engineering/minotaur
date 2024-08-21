@@ -1,0 +1,50 @@
+{
+	"verbosity": "all",
+	"repeats" : 5,
+	"batches": -1,
+	"duration" : 1000,
+	"workers" : 5,
+	"memory" : 4,
+	"transforms" : 30,
+	"seed": [1,2,3,4,5],
+	"batch_size" : 30,
+	"maze_gen" : "container",
+	"expected_result": "error",
+	"abort_on_error": [["fn"]],
+	"tool" : {
+		"esbmc-bug3": {
+			"variant" : ["--interval-analysis"]
+		}
+	},
+	"check_error": {
+		"esbmc-bug3": "esbmc-fixed3"
+	},
+
+	"avg": 1,
+	"parameters" : {
+		"u" : [0,1],
+		"a": ["Backtracking","Kruskal","Prims","Wilsons","Sidewinder"],
+		"w" : {
+			"min" : 4,
+			"max" : 7
+		},
+		"h" : {
+			"min" : 5,
+			"max" : 7
+		},
+		"c" : {
+			"min" : 0,
+			"max" : 0
+		},
+		"t" : {
+			"storm": [1],
+			"wd": [0]
+		},
+		"g": ["CVE_gen"],
+		"s": "/Minotaur/bug_seeds/MULTIPLIER_PRIME_2.msat.smt2",
+		"r" : {
+			"min" : 0,
+			"max" : 65536
+		}
+	}
+}

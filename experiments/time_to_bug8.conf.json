@@ -1,0 +1,52 @@
+{
+	"verbosity": "bug",
+	"repeats" : 10,
+	"batches": 1000,
+	"duration" : 60,
+	"workers" : 1,
+	"memory" : 2,
+	"transforms" : [25],
+	"seed": [1,2,3,4,5],
+	"batch_size": 1,
+	"maze_gen" : "container",
+	"expected_result": ["infer"],
+	"abort_on_error": [["fp"]],
+	"gen_time" : 3600,
+	"use_core" : 5,
+	"tool" : {
+		"cpa-bug4": {
+			"variant" : ["smg2"]
+		}
+	},
+	"check-error": {
+		"cpa-bug4": "cpa-fixed4"
+	},
+	"avg": 1,
+	"parameters" : [{
+		"a": ["Backtracking","Kruskal","Prims","Wilsons","Sidewinder"],
+		"w" : {
+			"min" : 4,
+			"max" : 7
+		},
+		"h" : {
+			"min" : 5,
+			"max" : 7
+		},
+		"t" : {
+			"fuzz": ["20x7","20x5","10x7","10x5"],
+			"wd": [1],
+			"mc": [0,25,50,75,100],
+			"dag": [0,2,3,4]
+		},
+		"g": ["CVE_gen"],
+		"s": "/Minotaur/bug_seeds/try5_small_difret_functions_flanagansaxe_users.get_quoting_style.il.flanagansaxe.smt2",
+		"r" : {
+			"min" : 0,
+			"max" : 65536
+		},
+		"c" : {
+			"min" : 0,
+			"max" : 0
+		}
+	}]
+}

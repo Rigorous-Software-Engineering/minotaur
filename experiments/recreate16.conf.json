@@ -1,0 +1,51 @@
+{
+	"verbosity": "all",
+	"repeats" : 5,
+	"batches" : -1,
+	"duration" : 1000,
+	"workers" : 5,
+	"memory" : 4,
+	"transforms" : 30,
+	"seed": [1,2,3,4,5],
+	"batch_size" : 30,
+	"maze_gen" : "container",
+	"expected_result": "safe",
+	"abort_on_error": [["wa-tp"]],
+	"tool" : {
+		"mopsa-bug1": {
+			"variant" : ["default"]
+		}
+	},
+	"check-error": {
+		"mopsa-bug1": "mopsa-fixed1"
+	},
+	"parameters" : {
+		"u" : [0,1],
+		"a": ["Backtracking","Kruskal","Prims","Wilsons","Sidewinder"],
+		"w" : {
+			"min" : 4,
+			"max" : 7
+		},
+		"h" : {
+			"min" : 5,
+			"max" : 7
+		},
+		"c" : {
+			"min" : 0,
+			"max" : 0
+		},
+		"t" : {
+			"storm":[1],
+			"wd": [1],
+			"mc": [0,25,50,75,100],
+			"dag": [0,2,3,4],
+			"ca": [0,1]
+		},
+		"g": ["CVE_gen"],
+		"s": "/Minotaur/bug_seeds/egt-2421.smt2",
+		"r" : {
+			"min" : 0,
+			"max" : 65536
+		}
+	}
+}

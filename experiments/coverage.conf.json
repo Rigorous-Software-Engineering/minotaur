@@ -1,0 +1,107 @@
+{
+	"verbosity": "bug",
+	"repeats" : 15,
+	"batches" : 100,
+	"duration" : 60,
+	"workers" : 150,
+	"memory" : 4,
+	"transforms" : [0,1,10],
+	"batch_size": 100,
+	"maze_gen" : "container",
+	"expected_result": "error",
+	"gen_time" : 1000,
+	"abort_on_error": 0,
+	"coverage": 1,
+	"seed": [1,1,1,2,2,2,3,3,3,4,4,4,5,5,5],
+	"tool" : { 
+		"cbmc": {
+			"variant" : ["--boolector","--mathsat","--cvc4","--yices","--z3"],
+			"choose" : {
+				"--" : [0,"full-slice","reachability-slice","reachability-slice-fb"]
+			},
+			"toggle" : ["--refine"]
+		},
+		"esbmc": {
+			"variant" : [""],
+			"toggle" : ["--array-flattener","--unwind 1024"],
+			"choose" : {
+				"" : ["--cvc","--z3", "--boolector", "--mathsat", "--yices"],
+				"--incremental-bmc" : [0,""," --falsification"],
+				"--tuple" : [0,"-node-flattener", "-sym-flattener"],
+				"--k-induction": [0,""," --bidirectional"],
+				"--interval-analysis": [0,"", "-wrapped","-extrapolate","-ibex-contractor","-simplify","-no-contract","-eval-assumptions", "-arithmetic","-bitwise", "-modular",
+				"-narrowing"],
+				"--smt-during-symex": [0,""," --smt-symex-guard"," --smt-symex-assert"]
+			}
+		},
+		"seahorn" : {
+			"variant" : ["spf", "bpf", "fpcf", "fpf"],
+			"choose" : {
+				"" : ["--bv-chc --step=large", "--bv-chc --step=small", "--bmc=mono","--bmc=opsem"]
+			}
+		}
+	},
+	"parameters" : [{
+		"a": ["Backtracking","Kruskal","Prims","Wilsons","Sidewinder"],
+		"w" : {
+			"min" : 4,
+			"max" : 7
+		},
+		"h" : {
+			"min" : 5,
+			"max" : 7
+		},
+		"g": ["default_gen","equality0_gen","equality25_gen","equality50_gen","equality75_gen","equality100_gen"],
+		"r" : {
+			"min" : 0,
+			"max" : 65536
+		}
+	},{
+		"a": ["Backtracking","Kruskal","Prims","Wilsons","Sidewinder"],
+		"w" : {
+			"min" : 4,
+			"max" : 7
+		},
+		"h" : {
+			"min" : 5,
+			"max" : 7
+		},
+		"t" : {
+			"storm": [0],
+			"wd": [0],
+			"mc": [0,25,50,75,100],
+			"dag": [0,2,3,4],
+			"neg": [1],
+			"ca": [0,1]
+		},
+		"g": ["CVE_gen","CVE-neg_gen"],
+		"s": "/Minotaur/covseeds",
+		"r" : {
+			"min" : 0,
+			"max" : 65536
+		}
+	},{
+		"a": ["Backtracking","Kruskal","Prims","Wilsons","Sidewinder"],
+		"w" : {
+			"min" : 4,
+			"max" : 7
+		},
+		"h" : {
+			"min" : 5,
+			"max" : 7
+		},
+		"t" : {
+			"storm": [1],
+			"wd": [0],
+			"mc": [0,25,50,75,100],
+			"dag": [0,2,3,4],
+			"ca": [0,1]
+		},
+		"g": ["CVE_gen","CVE-neg_gen"],
+		"s": "/Minotaur/covseeds",
+		"r" : {
+			"min" : 0,
+			"max" : 65536
+		}
+	}]
+}

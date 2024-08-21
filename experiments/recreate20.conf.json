@@ -1,0 +1,48 @@
+{
+	"verbosity": "all",
+	"repeats" : 5,
+	"batches" : -1,
+	"duration" : 1000,
+	"workers" : 5,
+	"memory" : 4,
+	"transforms" : 300,
+	"seed": [1,2,3,4,5],
+	"batch_size" : 300,
+	"maze_gen" : "container",
+	"expected_result": "infer",
+	"abort_on_error": [["fn"]],
+	"tool" : {
+		"mopsa": {
+			"variant" : ["cell-itv-excluded-powerset"]
+		}
+	},
+
+	"parameters" : {
+		"u" : [0,1],
+		"a": ["Backtracking","Kruskal","Prims","Wilsons","Sidewinder"],
+		"w" : {
+			"min" : 4,
+			"max" : 7
+		},
+		"h" : {
+			"min" : 5,
+			"max" : 7
+		},
+		"c" : {
+			"min" : 0,
+			"max" : 0
+		},
+		"t" : {
+			"fuzz": ["10x7","20x7","10x10","20x5"],
+			"wd": [0],
+			"mc": [0,25,50,75,100],
+			"dag": [0,2,3,4]
+		},
+		"g": ["CVE_gen"],
+		"s": "/Minotaur/bug_seeds/bitvector-s3_srvr_1.BV.c.cil-test000039.smt2",
+		"r" : {
+			"min" : 0,
+			"max" : 65536
+		}
+	}
+}

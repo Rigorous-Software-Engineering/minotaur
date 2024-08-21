@@ -1,0 +1,1 @@
+config={"home":"/path/to/Minotaur/src/maze_gen/storm"}

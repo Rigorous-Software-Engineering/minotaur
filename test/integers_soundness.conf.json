@@ -1,0 +1,89 @@
+{
+	"verbosity": "bug",
+	"repeats" : 500,
+	"duration" : 60,
+	"workers" : 120,
+	"memory" : 4,
+	"transforms" : 15,
+	"maze_gen" : "container",
+	"expected_result": "error",
+	"tool" : { 
+		"cpa" : {
+			"variant" : ["predicateAnalysis", "valueAnalysis", "kInduction", "symbolicExecution", "invariantGeneration", "smg2","bmc","ldv"]
+		},
+		"seahorn" : {
+			"variant" : ["spf", "bpf", "fpcf", "fpf"],
+			"choose" : {
+				"--bmc=" : ["none","mono","path","opsem"],
+				"--step=" : ["large", "small"],
+				"--crab --crab-track=mem --crab-dom=" : [0, "int", "ric","term-int", "dis-int", "term-dis-int","zones","soct","rtz","w-int"],
+				"--horn-use-invs=" : ["bg","always"]
+			}
+		},
+		"ultimate" : {
+			"variant" : ["Automizer Default","Taipan Default","Kojak Default","GemCutter Default"]
+		},
+		"cbmc": {
+			"variant" : ["--boolector","--mathsat","--cvc4","--yices","--z3"],
+			"choose" : {
+				"--paths= " : [0,"fifo","lifo"],
+				"--" : [0,"full-slice","reachability-slice","reachability-slice-fb"]
+			},
+			"toggle" : ["--refine"]
+		},
+		"symbiotic": {
+			"variant" : [""]
+		},
+		"2ls": {
+			"variant" : ["", "--inline", "--incremental-bmc", "--k-induction", "--preconditions", "--preconditions --sufficient"],
+			"toggle" : ["--context-sensitive"],
+			"choose" : {
+				"" : ["--intervals", "--octagons", "--equalities", "--havoc", "--heap", "--heap --intervals", "--heap --zones", "--arrays"]	
+			}
+		},
+		"esbmc": {
+			"variant" : ["--z3", "--boolector", "--cvc", "--mathsat", "--yices", "--bv", "--ir"],
+			"toggle" : ["--array-flattener","--unwind 1024"],
+			"choose" : {
+				"--incremental-bmc" : [0,""," --falsification"],
+				"--tuple" : [0,"-node-flattener", "-sym-flattener"],
+				"--k-induction": [0,""," --bidirectional"],
+				"--interval-analysis": [0,"", "-wrapped","-extrapolate","-ibex-contractor","-simplify","-no-contract","-eval-assumptions", "-arithmetic","-bitwise", "-modular",
+				"-narrowing"],
+				"--smt-during-symex": [0,""," --smt-symex-guard"," --smt-symex-assert"]
+			}
+		},
+		"mopsa": {
+			"variant" : ["default", "cell-itv", "cell-itv-congr", "cell-pack-rel-itv", "cell-itv-powerset", "cell-itv-zero", "cell-itv-congr"]
+		}
+	},
+	"parameters" : {
+		"u" : [0,1],
+		"a": ["Backtracking","Kruskal","Prims","Wilsons","Sidewinder"],
+		"w" : {
+			"min" : 4,
+			"max" : 7
+		},
+		"h" : {
+			"min" : 5,
+			"max" : 7
+		},
+		"c" : {
+			"min" : 0,
+			"max" : 0
+		},
+		"t" : {
+			"storm": [1],
+			"wd": [0,1],
+			"mc": [0,25,50,75,100],
+			"dag": [0,2,3,4],
+			"ca": [0,1]
+		},
+		"g": ["CVE_gen"],
+		"s": "/Minotaur/../integer",
+		"r" : {
+			"min" : 0,
+			"max" : 65536
+		}
+	}
+}

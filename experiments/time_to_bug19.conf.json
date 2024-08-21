@@ -1,0 +1,97 @@
+{
+	"verbosity": "bug",
+	"repeats" : 15,
+	"batches": 1000,
+	"duration" : 60,
+	"workers" : 1,
+	"memory" : 2,
+	"transforms" : [0,1,25],
+	"seed": [1,1,1,2,2,2,3,3,3,4,4,4,5,5,5],
+	"batch_size": 1,
+	"maze_gen" : "container",
+	"expected_result": ["error", "error", "infer"],
+	"abort_on_error": [["fn"]],
+	"gen_time" : 3600,
+	"use_core" : 10,
+	"tool" : {
+		"mopsa-bug1": {
+			"variant" : ["cell-itv-congr"]
+		}
+	},
+	"check-error": {
+		"mopsa-bug1": "mopsa-fixed1"
+	},
+	"avg": 1,
+	"parameters" : [{
+		"a": ["Backtracking","Kruskal","Prims","Wilsons","Sidewinder"],
+		"w" : {
+			"min" : 4,
+			"max" : 7
+		},
+		"h" : {
+			"min" : 5,
+			"max" : 7
+		},
+		"g": ["default_gen","equality0_gen","equality25_gen","equality50_gen","equality75_gen","equality100_gen"],
+		"r" : {
+			"min" : 0,
+			"max" : 65536
+		},
+		"c" : {
+			"min" : 0,
+			"max" : 0
+		}
+	},{
+		"a": ["Backtracking","Kruskal","Prims","Wilsons","Sidewinder"],
+		"w" : {
+			"min" : 4,
+			"max" : 7
+		},
+		"h" : {
+			"min" : 5,
+			"max" : 7
+		},
+		"t" : {
+			"neg": [1],
+			"wd": [0,1],
+			"mc": [0,25,50,75,100],
+			"dag": [0,2,3,4]
+		},
+		"g": ["CVE_gen"],
+		"s": "/Minotaur/bug_seeds/app12bench_930.smt2",
+		"r" : {
+			"min" : 0,
+			"max" : 65536
+		},
+		"c" : {
+			"min" : 0,
+			"max" : 0
+		}
+	},{
+		"a": ["Backtracking","Kruskal","Prims","Wilsons","Sidewinder"],
+		"w" : {
+			"min" : 4,
+			"max" : 7
+		},
+		"h" : {
+			"min" : 5,
+			"max" : 7
+		},
+		"t" : {
+			"fuzz": ["10x10","1x100","5x20"],
+			"wd": [0],
+			"mc": [0,25,50,75,100],
+			"dag": [0,2,3,4]
+		},
+		"g": ["CVE_gen"],
+		"s": "/Minotaur/bug_seeds/app8bench_110.smt2",
+		"r" : {
+			"min" : 0,
+			"max" : 65536
+		},
+		"c" : {
+			"min" : 0,
+			"max" : 0
+		}
+	}]
+}

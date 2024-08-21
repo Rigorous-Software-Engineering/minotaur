@@ -1,0 +1,90 @@
+{
+	"verbosity": "bug",
+	"repeats" : -1,
+	"duration" : 60,
+	"batch_duration": 1,
+	"workers" : 120,
+	"memory" : 4,
+	"transforms" : 30,
+	"maze_gen" : "container",
+	"expected_result": "safe",
+	"batch_size" : 180,
+	"tool" : { 
+		"cpa" : {
+			"variant" : ["predicateAnalysis", "valueAnalysis", "kInduction", "symbolicExecution", "invariantGeneration", "smg2","bmc"]
+		},
+		"seahorn" : {
+			"variant" : ["spf", "bpf", "fpcf", "fpf"],
+			"choose" : {
+				"" : ["--bv-chc --step=large", "--bv-chc --step=small", "--bmc=mono","--bmc=opsem"]
+			}
+		},
+		"ultimate" : {
+			"variant" : ["Automizer Default","Taipan Default","Kojak Default","GemCutter Default", "Automizer Bitvector","Taipan Bitvector","Kojak Bitvector","GemCutter Bitvector"]
+		},
+		"cbmc": {
+			"variant" : ["--boolector","--mathsat","--cvc4","--yices","--z3"],
+			"choose" : {
+				"--paths " : [0,"fifo","lifo"],
+				"--" : [0,"full-slice","reachability-slice","reachability-slice-fb"],
+				"" : ["--bounds-check --pointer-check --div-by-zero-check --signed-overflow-check --undefined-shift-check "]
+			},
+			"toggle" : ["--refine"]
+		},
+		"2ls": {
+			"variant" : ["", "--inline", "--incremental-bmc", "--k-induction", "--preconditions", "--preconditions --sufficient"],
+			"toggle" : ["--context-sensitive"],
+			"choose" : {
+				"" : ["--intervals", "--octagons", "--equalities", "--havoc", "--heap", "--heap --intervals", "--heap --zones", "--arrays"],
+				"--" : ["bounds-check --div-by-zero-check --signed-overflow-check --undefined-shift-check"]
+			}
+		},
+		"esbmc": {
+			"variant" : ["--z3", "--boolector", "--cvc", "--mathsat", "--yices", "--bv"],
+			"toggle" : ["--array-flattener","--unwind 1024"],
+			"choose" : {
+				"--incremental-bmc" : [0,""," --falsification"],
+				"--tuple" : [0,"-node-flattener", "-sym-flattener"],
+				"--k-induction": [0,""," --bidirectional"],
+				"--interval-analysis": [0,"", "-wrapped","-extrapolate","-ibex-contractor","-simplify","-no-contract","-eval-assumptions", "-arithmetic","-bitwise", "-modular",
+				"-narrowing"],
+				"--smt-during-symex": [0,""," --smt-symex-guard"," --smt-symex-assert"]
+			}
+		},
+		"symbiotic": {
+			"variant" : [""]
+		}
+	},
+	"parameters" : {
+		"u" : [0,1],
+		"a": ["Backtracking","Kruskal","Prims","Wilsons","Sidewinder"],
+		"w" : {
+			"min" : 4,
+			"max" : 7
+		},
+		"h" : {
+			"min" : 5,
+			"max" : 7
+		},
+		"c" : {
+			"min" : 0,
+			"max" : 0
+		},
+		"t" : {
+			"fuzz": ["5x5","5x7","5x10",
+				"10x5","10x7","10x10",
+				"20x5","20x7","20x10"],
+			"mc": [0,25,50,75,100],
+			"wd": [1],
+			"unsat": [1],
+			"dag" : [0,2,3,4],
+			"ca" : [0,1]
+		},
+		"g": ["CVE_gen","CVE-neg_gen"],
+		"s":["/Minotaur/../bitvector"],
+		"r" : {
+			"min" : 0,
+			"max" : 65536
+		}
+	}
+}

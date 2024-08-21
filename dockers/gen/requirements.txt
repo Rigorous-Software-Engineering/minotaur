@@ -1,0 +1,5 @@
+matplotlib
+mazelib
+pysmt
+z3-solver
+termcolor

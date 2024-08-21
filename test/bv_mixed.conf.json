@@ -1,0 +1,87 @@
+{
+	"verbosity": "bug",
+	"repeats" : -1,
+	"duration" : 60,
+	"batch_duration": 1,
+	"workers" : 190,
+	"memory" : 4,
+	"gen_time": 180,
+	"transforms" : 300,
+	"batch_size" : 3600,
+	"maze_gen" : "container",
+	"expected_result": "infer",
+	"tool" : { 
+		"cpa" : {
+			"variant" : ["predicateAnalysis", "valueAnalysis", "kInduction", "symbolicExecution", "invariantGeneration", "smg2","bmc"]
+		},
+		"ultimate" : {
+			"variant" : ["Automizer Default","Taipan Default","Kojak Default","GemCutter Default", "Automizer Bitvector","Taipan Bitvector","Kojak Bitvector","GemCutter Bitvector"]
+		},
+		"cbmc": {
+			"variant" : ["--boolector","--mathsat","--cvc4","--yices","--z3"],
+			"choose" : {
+				"--" : [0,"full-slice","reachability-slice","reachability-slice-fb"]
+			},
+			"toggle" : ["--refine"]
+		},
+		"2ls": {
+			"variant" : ["", "--inline", "--incremental-bmc", "--k-induction", "--preconditions", "--preconditions --sufficient"],
+			"toggle" : ["--context-sensitive"],
+			"choose" : {
+				"" : ["--intervals", "--octagons", "--equalities", "--havoc", "--heap", "--heap --intervals", "--heap --zones", "--arrays"]	
+			}
+		},
+		"esbmc": {
+			"variant" : [""],
+			"toggle" : ["--array-flattener","--unwind 1024"],
+			"choose" : {
+				"" : ["--cvc","--z3", "--boolector", "--mathsat", "--yices"],
+				"--incremental-bmc" : [0,""," --falsification"],
+				"--tuple" : [0,"-node-flattener", "-sym-flattener"],
+				"--k-induction": [0,""," --bidirectional"],
+				"--interval-analysis": [0,"", "-wrapped","-extrapolate","-ibex-contractor","-simplify","-no-contract","-eval-assumptions", "-arithmetic","-bitwise", "-modular",
+				"-narrowing"],
+				"--smt-during-symex": [0,""," --smt-symex-guard"," --smt-symex-assert"]
+			}
+		},
+		"mopsa": {
+			"variant" : ["cell-itv-congr","cell-itv-excluded-powerset","cell-itv-powerset-zero","cell-itv-powerset","cell-itv-zero",
+						"cell-itv","cell-pack-rel-itv-congr","cell-pack-rel-itv","cell-rel-itv-congr","cell-rel-itv","cell-string-length-itv-congr-excluded-powerset",
+						"cell-string-length-itv-congr","cell-string-length-itv-powerset-zero","cell-string-length-itv-zero","cell-string-length-itv","cell-string-length-pack-rel-itv-congr",
+						"cell-string-length-pack-rel-itv","cell-string-length-pointer-sentinel-itv-congr","cell-string-length-pointer-sentinel-itv","cell-string-length-pointer-sentinel-pack-rel-itv-congr-excluded-powerset-rewrite",
+						"cell-string-length-pointer-sentinel-pack-rel-itv-congr-excluded-powerset","cell-string-length-pointer-sentinel-pack-rel-itv-congr-rewrite","cell-string-length-pointer-sentinel-pack-rel-itv-congr",
+						"cell-string-length-pointer-sentinel-pack-rel-itv","cell-string-length-rel-itv","default"]
+		}
+	},
+	"parameters" : {
+		"u" : [0,1],
+		"a": ["Backtracking","Kruskal","Prims","Wilsons","Sidewinder"],
+		"w" : {
+			"min" : 4,
+			"max" : 7
+		},
+		"h" : {
+			"min" : 5,
+			"max" : 7
+		},
+		"c" : {
+			"min" : 0,
+			"max" : 0
+		},
+		"t" : {
+			"fuzz": ["5x5","5x7","5x10",
+				"10x5","10x7","10x10",
+				"20x5","20x7","20x10"],
+			"ca": [0,1],
+			"wd": [0,1],
+			"mc": [0,25,50,75,100],
+			"dag": [0,2,3,4]
+		},
+		"g": ["CVE_gen", "CVE-neg_gen"],
+		"s":["/Minotaur/../bitvector"],
+		"r" : {
+			"min" : 0,
+			"max" : 999999999
+		}
+	}
+}
