@@ -1,5 +1,5 @@
 FROM minotaur-base
-ARG CORE_COUNT
+ARG CORE_COUNT=4
 
 RUN sudo dpkg --add-architecture i386 
 
