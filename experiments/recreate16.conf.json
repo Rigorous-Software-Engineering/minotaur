@@ -12,12 +12,9 @@
 	"expected_result": "safe",
 	"abort_on_error": [["wa-tp"]],
 	"tool" : {
-		"mopsa-bug1": {
+		"mopsa": {
 			"variant" : ["default"]
 		}
-	},
-	"check-error": {
-		"mopsa-bug1": "mopsa-fixed1"
 	},
 	"parameters" : {
 		"u" : [0,1],

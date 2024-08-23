@@ -20,7 +20,7 @@ In particular config files accept the following values
  -  `cov=[0,1]`: Collect coverage data. Currently only supported by ESBMC, CBMC, SeaHorn dockers
  -  `gen_time`: Timeout maze generation after this many seconds
  -  `abort_on_error=[flag1,flag2,...]`: Stop the test if one of the flags is triggered. Mainly useful when attemting to recreate a specific bug
- -  `check-error`: For recreating bugs, specify a fixed version for each buggy tool version container to check if the bug found is solved in the new version.
+ -  `check_error`: For recreating bugs, specify a fixed version for each buggy tool version container to check if the bug found is solved in the new version.
  -  `use-core`: If >= 0, pin dockers to the selected CPU. Useful for experiments, not recommended for testing. Default: -1  
 ### Configuring experiments
 Experiments essentially consists of multiple test configuratinos run in sequence. How many tests can be specified via the following parameter: 

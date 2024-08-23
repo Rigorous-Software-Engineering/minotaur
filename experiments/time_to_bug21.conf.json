@@ -18,7 +18,7 @@
 			"variant" : ["cell-rel-itv"]
 		}
 	},
-	"check-error": {
+	"check_error": {
 		"mopsa-bug2": "mopsa-fixed2"
 	},
 	"avg": 1,
@@ -58,7 +58,7 @@
 			"dag": [0,2,3,4]
 		},
 		"g": ["CVE_gen"],
-		"s": "/Minotaur/bug_seeds/app12bench_930.smt2",
+		"s": "/Minotaur/bug_seeds/egt-1024.smt2",
 		"r" : {
 			"min" : 0,
 			"max" : 65536
@@ -84,7 +84,7 @@
 			"dag": [0,2,3,4]
 		},
 		"g": ["CVE_gen"],
-		"s": "/Minotaur/bug_seeds/app8bench_110.smt2",
+		"s": "/Minotaur/bug_seeds/egt-1024.smt2",
 		"r" : {
 			"min" : 0,
 			"max" : 65536

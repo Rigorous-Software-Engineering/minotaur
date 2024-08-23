@@ -16,7 +16,7 @@
 			"variant" : ["cell-itv-congr"]
 		}
 	},
-	"check-error": {
+	"check_error": {
 		"mopsa-bug1": "mopsa-fixed1"
 	},
 	"parameters" : {
